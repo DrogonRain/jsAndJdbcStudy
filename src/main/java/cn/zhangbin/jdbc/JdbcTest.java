@@ -167,4 +167,40 @@ public class JdbcTest {
         }
         return null;
     }
+
+    @Test
+    public void test6(){
+        Connection conn = null;
+        try{
+            // 1. 建立连接
+            conn = DBUtils.getConnection();
+            // 2. 开启事务
+            conn.setAutoCommit(false);
+            // 3. 进行数据库操作
+            String sql = "UPDATE course SET name = ? WHERE  id = ?";
+            update(sql,"javaScript",5);
+
+            String sql2 = "UPDATE course SET name = ? WHERE id = ?";
+            update(sql2,"math",1);
+            // 4. 若没有异常则提交事务
+            conn.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            // 5.若有异常,则回滚事务
+            try {
+                conn.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }finally {
+            try{
+                // 6.回复每次操作的自动提交功能
+                conn.setAutoCommit(true);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            // 7.关闭链接
+            DBUtils.closeAll(conn,null,null);
+        }
+    }
 }
