@@ -5,8 +5,71 @@
     <title>Title</title>
 </head>
 <body>
+<div style="width: 100px;height: 100px;background-color: brown;"></div>
+<input type="text" id="input" />
+<button id="btn">确定</button>
+<script src="./js/index.js"></script>
 <script>
-    console.log('hello')
+    // let修饰的变量不允许重复 但 var允许 const修饰常量
+    // let num = 3;
+    // let str = 'hello ';
+    // console.log(str+num);
+    // let array = Array();
+    // array[0] = 1;
+    // array[1] = 1;
+    // console.log(array[0],array[1]);
+    // let array2 = [0,1,2,3,4,5];
+    // console.log(array2);
+    // for (let i = 0; i<array2.length; i++){
+    //     console.log(array2[i]);
+    // }
+    // console.log(plus(array[0],array[1]));
+    // console.log(minus(array[0],array[1]));
+    // (function f(a,b){
+    //     console.log(a+b);
+    //     return a + b;
+    // })(4,5);
+    // function User(name,age){
+    //     this.name = name;
+    //     this.age = age;
+    // }
+    //
+    // let user = new User('张斌',23);
+    // user.eat = function(){
+    //     console.log(1111);
+    // }
+    // console.log(user);
+    // user.eat();
+    // let con = document.getElementById('console');
+    // con.addEventListener('click',function () {
+    //     console.log('被点击了!');
+    // })
+    // })
+    document.onload = new function(){
+        console.log('demo1');
+        let btn = document.querySelector('div');
+        // let input = document.querySelector('#input');
+        btn.addEventListener('input',function () {
+            btn.setAttribute('style',"width: 200px;height: "+Math.random()*200+"px;background-color: brown;")
+        });
+    }
+    let btn = document.querySelector('div');
+    let input = document.querySelector('#input');
+    // input.addEventListener('focus',function () {
+    //     btn.setAttribute('style',"width: 200px;height: "+Math.random()*200+"px;background-color: brown;")
+    // });
+    let collback = function (event) {
+        event.target.value = '1234';
+    };
+    input.addEventListener('focus',collback);
+    let button = document.querySelector("#btn");
+    button.addEventListener('click',function(){
+       input.removeEventListener('focus',collback);
+    });
+
+    // input.addEventListener('keyup',function () {
+    //     btn.setAttribute('style',"width: 100px;height: 100px;background-color: black;")
+    // });
 </script>
 </body>
 </html>

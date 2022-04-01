@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.*;
 
 public class JdbcTest {
 
@@ -26,6 +27,27 @@ public class JdbcTest {
         //4.获取连接
         Connection conn = DriverManager.getConnection(url, user, password);
         System.out.println(conn);
+    }
+
+    @Test
+    public void test8(){
+        Map<String,Integer> map = new HashMap<String, Integer>();
+        map.put("张三",80);
+        map.put("李四",60);
+        map.put("王五",70);
+        map.put("赵六",90);
+        Map<String, Integer> change = change(map, 60);
+        System.out.println("change.toString() = " + change.toString());
+    }
+
+    public static <K> Map<K,Integer> change(Map<K,Integer> map,int condition){
+        Map<K,Integer> map1 = new HashMap<K, Integer>();
+        for (Map.Entry<K,Integer> emap : map.entrySet()){
+            if (emap.getValue() > condition){
+                map1.put(emap.getKey(),emap.getValue());
+            }
+        }
+        return map1;
     }
 
     @Test

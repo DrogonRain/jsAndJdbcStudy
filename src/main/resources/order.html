@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级联动</title>
+</head>
+<body>
+    <select name="province" id="province">
+
+    </select>
+    <select name="city" id="city">
+
+    </select>
+    <select name="country" id="country">
+
+    </select>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="./js/data.js"></script>
+    <script>
+
+        function init(selector, data) {
+            let inner = "";
+            for (let city in data){
+                inner += '<option value="'+city+'">'+data[city]+'</option>'
+            }
+            $(selector).html(inner);
+        }
+        init("#province",data['86']);
+        init("#city",data['110000']);
+        init("#country",data['110100']);
+        // let province = document.getElementById('province');
+        $("#province").change(function(){
+            init('#city',data[this.value]);
+            init('#country',data[document.getElementById('city').value]);
+        });
+        // let city = document.getElementById('city');
+        $("#city").change(function(){
+            init('#country',data[this.value]);
+        });
+
+
+
+        // function init(elementId, data) {
+        //     let inner = "";
+        //     for (let city in data){
+        //         inner += '<option value="'+city+'">'+data[city]+'</option>'
+        //     }
+        //     document.getElementById(elementId).innerHTML = inner;
+        // }
+        // init("province",data['86']);
+        // init("city",data['110000']);
+        // init("country",data['110100']);
+        // let province = document.getElementById('province');
+        // province.addEventListener('change',function(){
+        //     init('city',data[this.value]);
+        //     init('country',data[document.getElementById('city').value]);
+        // });
+        // let city = document.getElementById('city');
+        // city.addEventListener('change',function(){
+        //     init('country',data[this.value]);
+        // });
+    </script>
+</body>
+</html>

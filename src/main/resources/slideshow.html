@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slideshow Demo</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            width: 500px;
+            height: 150px;
+            position: relative;
+            margin: 50px;
+        }
+        .pre {
+            position: absolute;
+            height: 100px;
+            width: 60px;
+            color: darkcyan;
+            font-size: 30px;
+            font-weight: 400;
+            top: 50px;
+            z-index: 5;
+            cursor: pointer;
+        }
+        .next {
+            position: absolute;
+            height: 100px;
+            width: 60px;
+            right: -40px;
+            color: darkcyan;
+            cursor: pointer;
+            top: 50px;
+            font-size: 30px;
+            font-weight: 400;
+            z-index: 5;
+        }
+        .item {
+            width: 500px;
+            height: 150px;
+            position: absolute;
+            opacity: 0;
+        }
+        .item:nth-child(1){
+            background-color: blue;
+        }
+        .item:nth-child(2){
+            background-color: yellow;
+        }
+        .item:nth-child(3){
+            background-color: red;
+        }
+        .item:nth-child(4){
+            background-color: black;
+        }
+        .active {
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 500ms linear;
+        }
+        .circle {
+            position: absolute;
+            width: 450px;
+            height: 30px;
+            z-index: 3;
+            bottom: 0;
+            opacity: .6;
+        }
+        .circle > ul > li {
+            float: left;
+            height: 15px;
+            width: 15px;
+            background-color: aliceblue;
+            font-size: 10px;
+            margin-left: 15px;
+            text-align: center;
+            line-height: 16px;
+            border-radius: 15px;
+            list-style: none;
+        }
+        .circle>ul {
+            margin: auto;
+            width: 120px;
+            margin-top: 10px;
+        }
+        .circle>ul::after {
+            content: '';
+            height: 0;
+            display: block;
+            clear: both;
+        }
+        .circleActive {
+            background-color: green!important;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item active" data-index="1"></div>
+        <div class="item" data-index="2"></div>
+        <div class="item" data-index="3"></div>
+        <div class="item" data-index="4"></div>
+        <div class="pre" id="pre"> < </div>
+        <div class="next" id="next"> > </div>
+        <div class="circle">
+            <ul>
+                <li data-index="1" class="circleActive">1</li>
+                <li data-index="2">2</li>
+                <li data-index="3">3</li>
+                <li data-index="4">4</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script>
+
+        function goNext() {
+            var active = $('.active');
+            var index = active.attr('data-index');
+            active.removeClass('active');
+            $(".item[data-index="+next(index)+"]").addClass('active');
+
+            var circleActive = $('.circleActive');
+            circleActive.removeClass('circleActive');
+            $(".container li[data-index="+next(index)+"]").addClass('circleActive');
+        }
+
+        function goPre(){
+            var active = $('.active');
+            var index = active.attr('data-index');
+            active.removeClass('active');
+            $(".item[data-index="+pre(index)+"]").addClass('active');
+
+            var circleActive = $('.circleActive');
+            circleActive.removeClass('circleAcitve');
+            $(".container li[data-index="+index+"]").addClass('circleActive');
+        }
+
+
+
+        function next(index){
+            if ($('.item').length === Number(index)){
+                index = 0;
+            }
+            return Number(index)+1;
+        }
+
+        function pre(index){
+            if (1 === Number(index)){
+                index = $('.item').length + 1;
+            }
+            return Number(index)-1;
+        }
+
+        $("#next").click(function () {
+            goNext();
+        })
+
+        $("#pre").click(function(){
+            goPre();
+        })
+
+        setInterval(goNext,5000);
+    </script>
+</body>
+</html>

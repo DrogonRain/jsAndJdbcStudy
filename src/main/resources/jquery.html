@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            background-color: red;!important;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: blue" id="div1"></div>
+    <hr>
+    <div style="background-color: blue;position: absolute" id="div2"></div>
+    <hr>
+    <div style="background-color: blue" id="div3"></div>
+    <hr>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script>
+        // let $ = function (selector) {
+        //     return {
+        //         els: document.querySelectorAll(selector),
+        //         height: function (height) {
+        //             for (let i= 0;i < this.els.length;i++){
+        //                 this.els[i].style.height = +height+'px';
+        //             }
+        //         },
+        //         width: function (width) {
+        //             for (let i= 0;i < this.els.length;i++){
+        //                 this.els[i].style.width = width+'px';
+        //             }
+        //         }
+        //
+        //     }
+        // }
+        // $(document).ready(function(){
+        //     console.log('what');
+        // })
+        $(function(){
+            var div = $("<div style='background-color: green'></div>").width(30).height(30);
+            var div2 = $("<div style='background-color: black'></div>").width(30).height(30);
+            // $('#div1,#div2').append(div);
+            // $('div>div').replaceWith(div2)
+            $('#div1').click(function(){
+                // $('#div1').toggleClass('active');
+                // $('div').text('what');
+                $('#div1').click(function () {
+                    // $('#div2').slideToggle(1000,'linear',function(){
+                    //     console.log('运行成功');
+                    // })
+                    $('#div2').animate({
+                        width: '400px',
+                        height: '400px',
+                        background: 'black',
+                        left: '500px'
+                    },3000)
+                })
+            })
+        })
+        $('#div1,#div2').height(50).width(50);
+        // .click(function(){
+        //     console.log($(this));
+        //     $(this).height(200);
+        // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            background-color: blue;!important;
+        }
+    </style>
+
+</head>
+<body>
+<!--<ul class="nav">-->
+<!--    <li class="item" data-index="1" id="i1">服装</li>-->
+<!--    <li class="item" data-index="2">鞋子</li>-->
+<!--    <li class="item" data-index="3">电子产品</li>-->
+<!--    <li class="item" data-index="4">裤子</li>-->
+<!--    <li class="item" data-index="5">食品</li>-->
+<!--</ul>-->
+
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+    Popover on 左侧
+</button>
+<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+    Popover on 右侧
+</button>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+
+<!-- 引入 echarts.js -->
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js" rel="external nofollow" ></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+<!--    // let lis = document.querySelectorAll(".item");-->
+<!--    // for (let i = 0; i < lis.length; i++) {-->
+<!--    //     lis[i].addEventListener('click',function(){-->
+<!--    //         for (let j = 0; j < lis.length; j++) {-->
+<!--    //             lis[j].className = 'item';-->
+<!--    //         }-->
+<!--    //         this.className='active';-->
+<!--    //     })-->
+<!--    // }-->
+<!--    // let ul = document.querySelector('.nav');-->
+<!--    // ul.addEventListener('click',function(event){-->
+<!--    //     console.log("ul");-->
+<!--    //     event.stopPropagation();-->
+<!--    //     // event.target.className = 'active';-->
+<!--    // },true)-->
+<!--    // let li = document.querySelector('#i1');-->
+<!--    // li.addEventListener('click',function(event){-->
+<!--    //     console.log("li");-->
+<!--    //     // event.target.className = 'active';-->
+<!--    // },true)-->
+<!--    // let dog = {-->
+<!--    //     name: 'teddy',-->
+<!--    //     say: function(a,b){-->
+<!--    //         let that = this;-->
+<!--    //         setTimeout(function (c,d) {-->
+<!--    //             console.log('this dog name is '+that.name+c+d);-->
+<!--    //         })-->
+<!--    //     }-->
+<!--    // }-->
+<!--    // dog.say.apply({name: 'baby'},[23,32]);-->
+<!--    // var num1 = 10;-->
+<!--    // function f1(){-->
+<!--    //     debugger-->
+<!--    //     var num2 = 11;-->
+<!--    //     function f2(){-->
+<!--    //         debugger-->
+<!--    //         var num2 = 12;-->
+<!--    //         debugger-->
+<!--    //         var num3 = 13;-->
+<!--    //         console.log('f2 &ndash;&gt; '+num2);-->
+<!--    //         console.log('f2 &ndash;&gt; '+num3);-->
+<!--    //     }-->
+<!--    //     f2();-->
+<!--    //     console.log('f1 &ndash;&gt; '+num2);-->
+<!--    // }-->
+<!--    // f1();-->
+<!--    // console.log('out &ndash;&gt; '+num2);-->
+<!--    // console.log('out &ndash;&gt; '+num1);-->
+<!--    // for (var i = 0; i < 10; i++) {-->
+<!--    //     // (函数作用域) 设置立即执行,传入形参-->
+<!--    //     (function(i){-->
+<!--    //         setTimeout(function () {-->
+<!--    //             console.log(i);-->
+<!--    //         },1000);-->
+<!--    //     //传入实参-->
+<!--    //     })(i)-->
+<!--    // }-->
+<!--    // var a = 10;-->
+<!--    // console.log(a);-->
+<!--    // a = function(){-->
+<!--    //     console.log();-->
+<!--    // }-->
+<!--    // console.log(a);-->
+<!--    // a();-->
+<!--    // a = 20;-->
+<!--    // a();-->
+<!--    // function count(){-->
+<!--    //     var num = 0;-->
+<!--    //     return function(){-->
+<!--    //         return num++;-->
+<!--    //     }-->
+<!--    // }-->
+<!--    // var adder = count();-->
+<!--    // var value = count()();-->
+<!--    // console.log(adder(),value);-->
+<!--    // console.log(adder(),value);-->
+<!--    // console.log(adder());-->
+<!--    // console.log(adder());-->
+<!--    // 闭包缓存-->
+<!--    // var plus = (function(){-->
+<!--    //     var cache = {};-->
+<!--    //-->
+<!--    //     return function () {-->
+<!--    //         var key = [].join.call(arguments);-->
+<!--    //         if (key in cache){-->
+<!--    //             console.log('走了缓存');-->
+<!--    //             return cache[key];-->
+<!--    //         }-->
+<!--    //-->
+<!--    //         console.log('又计算了一次');-->
+<!--    //         var sum = 0;-->
+<!--    //         for (var i = 0;i< ; i++) {-->
+<!--    //             sum+=arguments[i];-->
+<!--    //         }-->
+<!--    //         cache[key] = sum;-->
+<!--    //         return sum;-->
+<!--    // })();-->
+<!--    // plus(1,2,3,4);-->
+<!--    // plus(1,2,3,4);-->
+<!--    // plus(1,2,3,4);-->
+<!--    // plus(1,2,3,4);-->
+<!--    // plus(1,2,3,4);-->
+</body>
+</html>
